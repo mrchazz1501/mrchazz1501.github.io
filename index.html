@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¿Quieres ser mi novia?</title>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffdee9;
+        text-align: center;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Fondo de estrellas */
+   body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white; /* FONDO BLANCO */
+    opacity: 1;        /* Totalmente visible */
+    z-index: -2;
+}
+
+
+
+    @keyframes twinkle {
+        from {opacity: 0.1;}
+        to {opacity: 0.25;}
+    }
+
+    /* Corazones flotando */
+    .heart {
+        position: fixed;
+        color: #ff4d88;
+        font-size: 30px;
+        animation: float 5s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        from {transform: translateY(100vh);}
+        to {transform: translateY(-10vh);}
+    }
+
+    h1 {
+        color: #ff2e93;
+        font-size: 40px;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px #ff9acb;
+    }
+
+    /* Caja tipo carta */
+    .carta {
+        width: 70%;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px #ff8ac6;
+        font-size: 20px;
+        line-height: 28px;
+        color: #ff2e93;
+        animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    /* Carrusel */
+    .slider {
+        width: 80%;
+        max-width: 450px;
+        height: 320px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 0 15px #ff80bf;
+        margin-bottom: 40px;
+    }
+
+    .slides {
+        display: flex;
+        width: 300%;
+        animation: cambio 12s infinite;
+    }
+
+    .slides img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+    }
+
+    @keyframes cambio {
+        0% { margin-left: 0; }
+        33% { margin-left: 0; }
+
+        40% { margin-left: -100%; }
+        66% { margin-left: -100%; }
+
+        73% { margin-left: -200%; }
+        100% { margin-left: -200%; }
+    }
+
+    /* Botones */
+    button {
+        font-size: 25px;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        margin: 25px;
+        transition: 0.3s;
+    }
+
+    #si {
+        background-color: #ff66b2;
+        color: white;
+        box-shadow: 0 0 15px #ff99d6;
+    }
+
+    #si:hover {
+        background-color: #ff1a8c;
+        transform: scale(1.1);
+    }
+
+    #no {
+        background-color: #c4c4c4;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- Música que tú pondrás -->
+<audio controls>
+    <source src="soñe de zoe.mp3" type="audio/mpeg">
+</audio>
+
+<h1>💖 Tengo algo muy especial para ti... 💖</h1>
+
+<!-- Texto tipo carta -->
+<div class="carta">
+    Desde que te conocí, todo se siente diferente...  
+    más bonito, más especial, más tú.  
+    Y hoy quiero preguntarte algo que me nace del corazón.  
+</div>
+
+<!-- Carrusel de fotos -->
+<div class="slider">
+    <div class="slides">
+        <img src="img1.jpg">
+        <img src="img2.jpg">
+        <img src="img3.jpg">
+        <img src="img4.jpg">
+        <img src="img5.jpg">
+        <img src="img6.jpg">
+    </div>
+</div>
+
+<h1>¿Me darias la oportunidad de ser tu novio? 💘</h1>
+
+<button id="si" onclick="acepta()">Sí 💕</button>
+<button id="no" onmouseover="mueve()">No 😢</button>
+
+<script>
+/* Botón Sí */
+function acepta() {
+    document.body.innerHTML = `
+        <h1 style="color:#ff2e93; font-size:50px; margin-top:100px;">
+            💖🥰 ¡Sabía que dirías que sí! 🥰💖
+        </h1>
+        <h2 style="color:#ff5fa1;">Te amo muchísimo 💕✨</h2>
+    `;
+}
+
+/* Botón No que se mueve */
+function mueve() {
+    let btn = document.getElementById("no");
+    let x = Math.random() * (window.innerWidth - 150);
+    let y = Math.random() * (window.innerHeight - 100);
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+
+/* Corazones flotando */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
